@@ -13,32 +13,32 @@ Quick Start
 You can download evaluation version from [here](http://www.fusioncharts.com/download/trials/). 
 You will need to upload all the charts as static resources. You can follow follwing instructions to do that.
 
-1 Unzip the archive
-2 Obtain `Charts` folder and produce a zip file
-3 Go to ** Salesforce | Setup | Develop | Static Resources | New ** upload the zip under the name `FusionCharts`
+1. Unzip the archive
+2. Obtain `Charts` folder and produce a zip file
+3. Go to ** Salesforce | Setup | Develop | Static Resources | New ** upload the zip under the name `FusionCharts`
 
 ### Upload the component
 
-1 Go to ** Salesforce | Setup | Develop | Components | New **
-2 Copy the contents of [component.xml](#) and save under the name `fusioncharts`
+1. Go to ** Salesforce | Setup | Develop | Components | New **
+2. Copy the contents of [component.xml](#) and save under the name `fusioncharts`
 
 Now you are setup to use fusioncharts visualforce api inside your apex pages. To demonstrate and test, use the following instructions.
 
 ### Setup Controller
 You will need to setup a apex controller to provide data to render the charts. The component will accept the name and the @RemoteAction method of this controller which will provide data. You can use sample contoller provided [here](Example/Controller).
 
-1 Go to ** Salesforce | Setup | Developer Console ** and create a new apex class.
-2 Copy the code of example controller into this class. Although JSON could dynamically be generated using apex JSON api, for the purpose of this example, I chose to send JSON string directly. You can convert any of your data into JSON objects using [Apex JSON API](http://wiki.developerforce.com/page/Getting_Started_with_Apex_JSON).
+1. Go to ** Salesforce | Setup | Developer Console ** and create a new apex class.
+2. Copy the code of example controller into this class. Although JSON could dynamically be generated using apex JSON api, for the purpose of this example, I chose to send JSON string directly. You can convert any of your data into JSON objects using [Apex JSON API](http://wiki.developerforce.com/page/Getting_Started_with_Apex_JSON).
 
 ### Create your first chart
 #### This is important
 Now you can draw your first fusion chart on an apex page.
 
-1 Go to ** Salesforce | Setup | Develop | Pages | New **
-2 You can create your first fusion chart here using `<c:fusioncharts/>` xml tag. It is as attributes of this tag that you will use the component api. Anything that you would have provided as an attribute to `<chart/>` tag in XML api, or as a `chart` property in FusionCharts JSON api, you will provide as an attribute to this component. *Caution* Not all attributes are supported at the moment.
+1. Go to ** Salesforce | Setup | Develop | Pages | New **
+2. You can create your first fusion chart here using `<c:fusioncharts/>` xml tag. It is as attributes of this tag that you will use the component api. Anything that you would have provided as an attribute to `<chart/>` tag in XML api, or as a `chart` property in FusionCharts JSON api, you will provide as an attribute to this component. *Caution* Not all attributes are supported at the moment.
 
 For quickstart copy the contents of [example apex page](Example/apexpage.xml) and save it under the name `fusionchart`
-3 Now hit the page https://your-salesforce-domain/apex/fusionchart. You will see a pie chart and a Column3D chart appear.
+3. Now hit the page https://your-salesforce-domain/apex/fusionchart. You will see a pie chart and a Column3D chart appear.
 
 Thats about it for this quick start tutorial.
 
