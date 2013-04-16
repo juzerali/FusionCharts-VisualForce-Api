@@ -1,0 +1,14 @@
+<apex:page >
+This is first fusion charts.
+    
+    <c:fusioncharts chartId="firstChart" chart="{!URLFOR($Resource.FusionCharts, 'Charts/Column3D.swf')}"
+        width="400" height="300" debugMode="0"
+        dataController="MyController.getJSONColumnData" caption="Weekly Sales Summary!" xAxisName="Week" yAxisName="Sales" 
+        numberPrefix="$"/>
+        
+    <c:fusioncharts chartId="secondChart" chart="{!URLFOR($Resource.FusionCharts, 'Charts/Pie3D.swf')}"
+        width="400" height="300" debugMode="0"
+        dataController="MyController.getJSONPieData" caption="Weekly Sales Summary!" xAxisName="Week" yAxisName="Sales" 
+        numberPrefix="$"/>
+
+</apex:page>

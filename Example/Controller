@@ -1,0 +1,17 @@
+global class MyController{
+    public MyController(){}
+    	/* Although JSON could dynamically be generated using apex JSON api, for the purpose of this example, I chose to 
+    	* send JSON string directly
+    	* http://wiki.developerforce.com/page/Getting_Started_with_Apex_JSON
+		*/
+    
+    	@RemoteAction
+        public static String getJSONColumnData(){
+        	return '{ "data" :  [  { "label" : "Week 1", "value" : "14400" },  { "label" : "Week 2", "value" : "19600" },  { "label" : "Week 3", "value" : "24000" },  { "label" : "Week 4", "value" : "15700" } ]}';
+        }
+    
+    	@RemoteAction
+        public static String getJSONPieData(){
+        	return '{"data":[{"label":"Services","value":"26"},{"label":"Hardware","value":"32"}, {"label":"Software","value":"42"}]}';
+        }
+}

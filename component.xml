@@ -1,0 +1,501 @@
+<!-- Fusion Charts visualforce api -->
+<apex:component controller="MyController">
+  <apex:includeScript value="{!URLFOR($Resource.FusionCharts, 'Charts/FusionCharts.js')}"/>
+  <!-- VisualForce API -->
+  <apex:attribute name="chartId" description="This is the unique id of the chart" type="String" required="true"/>
+  <apex:attribute name="chart" description="A valid visualforce chart to draw" type="String" required="true"/>
+  <apex:attribute name="dataController" description="Controller action that will provide data to render chart" type="String" required="true"/>
+  <apex:attribute name="width" description="Controller action that will provide data to render chart" type="String" required="true"/>
+  <apex:attribute name="height" description="Controller action that will provide data to render chart" type="String" required="true"/>
+  <apex:attribute name="debugMode" description="Controller action that will provide data to render chart" type="String" required="false" default="0"/>
+
+  <apex:attribute name="caption" description="This is the caption." type="String" />
+  <apex:attribute name="subcaption" description="This is the subcaption." type="String" />
+  <apex:attribute name="xAxisName" description="" type="String" />
+  <apex:attribute name="yAxisName" description="" type="String" />
+  <apex:attribute name="showvalues" description="" type="String" />
+  <apex:attribute name="chartOrder" description="" type="String" />
+
+  <!-- Background -->
+  <apex:attribute name="bgColor" description="" type="String" />
+  <apex:attribute name="bgAlpha" description="" type="String" />
+  <apex:attribute name="bgRatio" description="" type="String" />
+  <apex:attribute name="bgAngle" description="" type="String" />
+  <apex:attribute name="bgImage" description="" type="String" />
+  <apex:attribute name="bgImageAlpha" description="" type="String" />
+  <apex:attribute name="bgImageValign" description="" type="String" />
+  <apex:attribute name="bgImageHalign" description="" type="String" />
+  <apex:attribute name="bgImageDisplayMode" description="" type="String" />
+  <apex:attribute name="bgImageScale" description="" type="String" />
+
+  <!-- Border -->
+  <apex:attribute name="showBorder" description="" type="String" />
+  <apex:attribute name="borderColor" description="" type="String" />
+  <apex:attribute name="borderThickness" description="" type="String" />
+  <apex:attribute name="borderAlpha" description="" type="String" />
+
+  <!-- Logo -->
+  <apex:attribute name="logoUrl" description="" type="String" />
+  <apex:attribute name="logoPosition" description="" type="String" />
+  <apex:attribute name="logoAlpha" description="" type="String" />
+  <apex:attribute name="logoScale" description="" type="String" />
+
+  <!-- Plot -->
+  <apex:attribute name="showPlotBorder" description="" type="String" />
+  <apex:attribute name="useRoundEdges" description="" type="String" />
+  <apex:attribute name="plotBorderDashed" description="" type="String" />
+  <apex:attribute name="plotBorderDashLen" description="" type="String" />
+  <apex:attribute name="plotBorderDashGap" description="" type="String" />
+
+  <!-- Data Labels -->
+  <apex:attribute name="labelDisplay" description="" type="String" />
+  <apex:attribute name="useEllipsesWhenOverflow" description="" type="String" />
+  <apex:attribute name="maxLabelWidthPercent" description="" type="String" />
+  <apex:attribute name="labelstep" description="" type="String" />
+  <apex:attribute name="outcnvbasefont" description="" type="String" />
+  <apex:attribute name="outcnvbasefontsize" description="" type="String" />
+  <apex:attribute name="outcnvbasefontcolor" description="" type="String" />
+
+  <!-- Data values -->
+  <apex:attribute name="basefont" description="" type="String" />
+  <apex:attribute name="basefontsize" description="" type="String" />
+  <apex:attribute name="basefontcolor" description="" type="String" />
+
+  <!-- Palletes -->
+  <apex:attribute name="palette" description="" type="String" />
+  <apex:attribute name="palettecolors" description="" type="String" />
+  <apex:attribute name="paletteThemeColor" description="" type="String" />
+
+  <!-- Limits -->
+  <apex:attribute name="setAdaptiveYMin" description="" type="String" />
+  <apex:attribute name="setAdaptiveXMin" description="" type="String" />
+  <apex:attribute name="PYAxisMinValue" description="" type="String" />
+  <apex:attribute name="PYAxisMaxValue" description="" type="String" />
+  <apex:attribute name="SYAxisMinValue" description="" type="String" />
+  <apex:attribute name="SYAxisMaxValue" description="" type="String" />
+  <apex:attribute name="syncAxisLimits" description="" type="String" />
+  <apex:attribute name="dynamicAxis" description="" type="String" />
+  <apex:attribute name="showLimits" description="" type="String" />
+  <apex:attribute name="showVLimits" description="" type="String" />
+
+  <!-- Divs Lines and Grids -->
+  <apex:attribute name="showyaxisvalues" description="" type="String" />
+  <apex:attribute name="adjustDiv" description="" type="String" />
+  <apex:attribute name="numDivLines" description="" type="String" />
+  <apex:attribute name="yaxisvaluesstep" description="" type="String" />
+  <apex:attribute name="divIntervalHints" description="" type="String" />
+  <apex:attribute name="divLineColor" description="" type="String" />
+  <apex:attribute name="divLineThickness" description="" type="String" />
+  <apex:attribute name="divLineAlpha" description="" type="String" />
+  <apex:attribute name="divLineIsDashed" description="" type="String" />
+  <apex:attribute name="divLineDashLen" description="" type="String" />
+  <apex:attribute name="divLineDashGap" description="" type="String" />
+  <apex:attribute name="showAlternateHGridColor" description="" type="String" />
+
+  <!-- Vertical div lines -->
+  <apex:attribute name="adjustVDiv" description="" type="String" />
+  <apex:attribute name="showXAxisValues" description="" type="String" />
+  <apex:attribute name="numVDivlines" description="" type="String" />
+  <apex:attribute name="xAxisValuesStep" description="" type="String" />
+  <apex:attribute name="vDivlineColor" description="" type="String" />
+  <apex:attribute name="vDivlineThickness" description="" type="String" />
+  <apex:attribute name="vDivlineAlpha" description="" type="String" />
+  <apex:attribute name="vDivlineIsDashed" description="" type="String" />
+  <apex:attribute name="vDivlineDashLen" description="" type="String" />
+  <apex:attribute name="vDivlineDashGap" description="" type="String" />
+  <apex:attribute name="showAlternateVGridColor" description="" type="String" />
+  <apex:attribute name="alternateVGridColor" description="" type="String" />
+  <apex:attribute name="alternateVGridAlpha" description="" type="String" />
+
+  <!-- Zero Plane -->
+  <apex:attribute name="zeroPlaneColor" description="" type="String" />
+  <apex:attribute name="zeroPlaneThickness" description="" type="String" />
+  <apex:attribute name="zeroPlaneAlpha" description="" type="String" />
+  <apex:attribute name="zeroPlaneShowBorder" description="" type="String" />
+  <apex:attribute name="zeroPlaneBorderColor" description="" type="String" />
+  <apex:attribute name="showVZeroPlane" description="" type="String" />
+  <apex:attribute name="vZeroPlaneColor" description="" type="String" />
+  <apex:attribute name="vZeroPlaneThickness" description="" type="String" />
+  <apex:attribute name="vZeroPlaneAlpha" description="" type="String" />
+  <apex:attribute name="vDivlineDashGap" description="" type="String" />
+  <apex:attribute name="showAlternateVGridColor" description="" type="String" />
+  <apex:attribute name="alternateVGridColor" description="" type="String" />
+  <apex:attribute name="alternateVGridAlpha" description="" type="String" />
+
+  <!-- Anchors and Lines -->
+  <apex:attribute name="drawAnchors" description="" type="String" />
+  <apex:attribute name="anchorAlpha" description="" type="String" />
+  <apex:attribute name="anchorSides" description="" type="String" />
+  <apex:attribute name="anchorRadius" description="" type="String" />
+  <apex:attribute name="anchorBorderColor" description="" type="String" />
+  <apex:attribute name="anchorBorderThickness" description="" type="String" />
+  <apex:attribute name="anchorBgColor" description="" type="String" />
+  <apex:attribute name="anchorAlpha" description="" type="String" />
+  <apex:attribute name="anchorBgAlpha" description="" type="String" />
+
+  <!-- Tool Tips -->
+  <apex:attribute name="showToolTip" description="" type="String" />
+  <apex:attribute name="showToolTipShadow" description="" type="String" />
+  <apex:attribute name="toolTipBorderColor" description="" type="String" />
+  <apex:attribute name="toolTipBgColor" description="" type="String" /> 
+
+  <!-- Chart Paddings and Margins -->
+  <apex:attribute name="chartLeftMargin" description="" type="String" />
+  <apex:attribute name="chartRightMargin" description="" type="String" />
+  <apex:attribute name="chartTopMargin" description="" type="String" />
+  <apex:attribute name="chartBottomMargin" description="" type="String" />
+  <apex:attribute name="captionPadding" description="" type="String" />
+  <apex:attribute name="xAxisNamePadding" description="" type="String" />
+  <apex:attribute name="yAxisNamePadding" description="" type="String" />
+  <apex:attribute name="yAxisValuesPadding" description="" type="String" />
+  <apex:attribute name="labelPadding" description="" type="String" />
+  <apex:attribute name="valuePadding" description="" type="String" />
+  <apex:attribute name="canvasPadding" description="" type="String" />
+
+
+  <!-- Smart Labels and Lines -->
+  <apex:attribute name="enableSmartLabels" description="" type="String" />
+  <apex:attribute name="smartLineColor" description="" type="String" />
+  <apex:attribute name="smartLineThickness" description="" type="String" />
+  <apex:attribute name="smartLineAlpha" description="" type="String" />
+  <apex:attribute name="isSmartLineSlanted" description="" type="String" />
+  <apex:attribute name="labelDistance" description="" type="String" />
+  <apex:attribute name="smartLabelClearance" description="" type="String" />
+  <apex:attribute name="skipOverlapLabels" description="" type="String" />
+  <apex:attribute name="showPercentValues" description="" type="String" />
+
+  <!-- Legend -->
+  <apex:attribute name="showlegend" description="" type="String" />
+  <apex:attribute name="legendPosition" description="" type="String" />
+  <apex:attribute name="legendIconScale" description="" type="String" />
+  <apex:attribute name="legendNumColumns" description="" type="String" />
+  <apex:attribute name="reverseLegend" description="" type="String" />
+  <apex:attribute name="legendBgColor" description="" type="String" />
+  <apex:attribute name="legendBgAlpha" description="" type="String" />
+  <apex:attribute name="legendBorderColor" description="" type="String" />
+  <apex:attribute name="legendBorderThickness" description="" type="String" />
+  <apex:attribute name="legendBorderAlpha" description="" type="String" />
+  <apex:attribute name="legendShadow" description="" type="String" />
+  <apex:attribute name="legendScrollBgColor" description="" type="String" />
+  <apex:attribute name="legendScrollBarColor" description="" type="String" />
+  <apex:attribute name="legendScrollBtnColor" description="" type="String" />
+
+  <!-- Number Formatting -->
+  <apex:attribute name="decimals" description="" type="String" />
+  <apex:attribute name="forceDecimals" description="" type="String" />
+  <apex:attribute name="sDecimals" description="" type="String" />
+  <apex:attribute name="formatNumberScale" description="" type="String" />
+  <apex:attribute name="formatNumber" description="" type="String" />
+  <apex:attribute name="sFormatNumber" description="" type="String" />
+  <apex:attribute name="sFormatNumberScale" description="" type="String" />
+  <apex:attribute name="decimalSeparator" description="" type="String" />
+  <apex:attribute name="thousandSeparator" description="" type="String" />
+  <apex:attribute name="thousandSeparatorPosition" description="" type="String" />
+  <apex:attribute name="numberPrefix" description="" type="String" />
+  <apex:attribute name="numberSuffix" description="" type="String" />
+  <apex:attribute name="sNumberPrefix" description="" type="String" />
+  <apex:attribute name="sNumberSuffix" description="" type="String" />
+  <apex:attribute name="yAxisValueDecimals" description="" type="String" />
+  <apex:attribute name="forceYAxisValueDecimals" description="" type="String" />
+  <apex:attribute name="SYAxisValueDecimals" description="" type="String" />
+
+  <!-- Number Formatting -->
+  <apex:attribute name="formatNumberScale" description="" type="String" />
+  <apex:attribute name="numberScaleValue" description="" type="String" />
+  <apex:attribute name="numberScaleUnit" description="" type="String" />
+  <apex:attribute name="xScaleRecursively" description="" type="String" />
+  <apex:attribute name="xMaxScaleRecursion" description="" type="String" />
+  <apex:attribute name="xScaleSeparator" description="" type="String" />
+  <apex:attribute name="sScaleRecursively" description="" type="String" />
+  <apex:attribute name="sMaxScaleRecursion" description="" type="String" />
+  <apex:attribute name="sScaleSeparator" description="" type="String" />
+  <!-- ... More to come TODO: Add all other attributes -->
+
+  <!-- Custom About menu item -->
+  <apex:attribute name="showaboutmenuitem" description="" type="String" />
+  <apex:attribute name="aboutmenuitemlabel" description="" type="String" />
+  <apex:attribute name="aboutmenuitemlink" description="" type="String" />
+
+  <!-- Pie and doughnut charts -->
+  <apex:attribute name="radius3D" description="" type="String" />
+  <apex:attribute name="startingAngle" description="" type="String" />
+  <apex:attribute name="slicingDistance" description="" type="String" />
+  <apex:attribute name="pieRadius" description="" type="String" />
+  <apex:attribute name="enableRotation" description="" type="String" />
+  <apex:attribute name="showPercentInToolTip" description="" type="String" />
+
+  <!-- Bubble and Scatter charts TODO -->
+
+  <!-- 3D chart attributes -->
+  <apex:attribute name="cameraAngX" description="" type="String" />
+  <apex:attribute name="cameraAngY" description="" type="String" />
+  <apex:attribute name="startAngX" description="" type="String" />
+  <apex:attribute name="endAngX" description="" type="String" />
+  <apex:attribute name="startAngY" description="" type="String" />
+  <apex:attribute name="endAngY" description="" type="String" />
+  <apex:attribute name="dynamicShading" description="" type="String" />
+  <apex:attribute name="lightAngX" description="" type="String" />
+  <apex:attribute name="lightAngY" description="" type="String" />
+  <apex:attribute name="bright2D" description="" type="String" />
+  <apex:attribute name="intensity" description="" type="String" />
+  <apex:attribute name="YZWallDepth" description="" type="String" />
+  <apex:attribute name="ZXWallDepth" description="" type="String" />
+  <apex:attribute name="XYWallDepth" description="" type="String" />
+  <apex:attribute name="zGapPlot" description="" type="String" />
+  <apex:attribute name="zDepth" description="" type="String" />
+  <apex:attribute name="clustered" description="" type="String" />
+  <apex:attribute name="zeroPlaneColor" description="" type="String" />
+  <apex:attribute name="zeroPlaneAlpha" description="" type="String" />
+  <apex:attribute name="zeroPlaneMesh" description="" type="String" />
+  <apex:attribute name="is2D" description="" type="String" />
+  <apex:attribute name="chartOnTop" description="" type="String" />
+  <apex:attribute name="xLabelGap" description="" type="String" />
+  <apex:attribute name="yLabelGap" description="" type="String" />
+
+
+
+  <!-- Parreto Chart -->
+  <apex:attribute name="showCumulativeLine" description="" type="String" />
+  <apex:attribute name="showLineValues" description="" type="String" />
+  <apex:attribute name="showSecondaryLimits" description="" type="String" />
+  <apex:attribute name="showDivLineSecondaryValue" description="" type="String" />
+
+
+  <!-- Marimekko Charts -->
+  <apex:attribute name="showSum" description="" type="String" />
+  <apex:attribute name="usePercentDistribution" description="" type="String" />
+  <apex:attribute name="showXAxisPercentValues" description="" type="String" />
+ 
+ 
+  <div id="{!chartId}">A chart should load here... </div>
+
+  
+  <script type="text/javascript">
+
+    var chart = {
+                  "caption":"{!caption}",
+                  "subcaption":"{!subcaption}",
+                  "xAxisName":"{!xAxisName}",
+                  "yAxisName":"{!yAxisName}",
+                  "showvalues":"{!showvalues}",
+                  "chartOrder":"{!chartOrder}",  
+                  "bgColor":"{!bgColor}",
+                  "bgAlpha":"{!bgAlpha}",
+                  "bgRatio":"{!bgRatio}",
+                  "bgAngle":"{!bgAngle}",
+                  "bgImage":"{!bgImage}",
+                  "bgImageAlpha":"{!bgImageAlpha}",
+                  "bgImageValign":"{!bgImageValign}",
+                  "bgImageHalign":"{!bgImageHalign}",
+                  "bgImageDisplayMode":"{!bgImageDisplayMode}",
+                  "bgImageScale":"{!bgImageScale}",  
+                  "showBorder":"{!showBorder}",
+                  "borderColor":"{!borderColor}",
+                  "borderThickness":"{!borderThickness}",
+                  "borderAlpha":"{!borderAlpha}",  
+                  "logoUrl":"{!logoUrl}",
+                  "logoPosition":"{!logoPosition}",
+                  "logoAlpha":"{!logoAlpha}",
+                  "logoScale":"{!logoScale}",  
+                  "showPlotBorder":"{!showPlotBorder}",
+                  "useRoundEdges":"{!useRoundEdges}",
+                  "plotBorderDashed":"{!plotBorderDashed}",
+                  "plotBorderDashLen":"{!plotBorderDashLen}",
+                  "plotBorderDashGap":"{!plotBorderDashGap}",  
+                  "labelDisplay":"{!labelDisplay}",
+                  "useEllipsesWhenOverflow":"{!useEllipsesWhenOverflow}",
+                  "maxLabelWidthPercent":"{!maxLabelWidthPercent}",
+                  "labelstep":"{!labelstep}",
+                  "outcnvbasefont":"{!outcnvbasefont}",
+                  "outcnvbasefontsize":"{!outcnvbasefontsize}",
+                  "outcnvbasefontcolor":"{!outcnvbasefontcolor}",  
+                  "basefont":"{!basefont}",
+                  "basefontsize":"{!basefontsize}",
+                  "basefontcolor":"{!basefontcolor}",  
+                  "palette":"{!palette}",
+                  "palettecolors":"{!palettecolors}",
+                  "paletteThemeColor":"{!paletteThemeColor}",  
+                  "setAdaptiveYMin":"{!setAdaptiveYMin}",
+                  "setAdaptiveXMin":"{!setAdaptiveXMin}",
+                  "PYAxisMinValue":"{!PYAxisMinValue}",
+                  "PYAxisMaxValue":"{!PYAxisMaxValue}",
+                  "SYAxisMinValue":"{!SYAxisMinValue}",
+                  "SYAxisMaxValue":"{!SYAxisMaxValue}",
+                  "syncAxisLimits":"{!syncAxisLimits}",
+                  "dynamicAxis":"{!dynamicAxis}",
+                  "showLimits":"{!showLimits}",
+                  "showVLimits":"{!showVLimits}",  
+                  "showyaxisvalues":"{!showyaxisvalues}",
+                  "adjustDiv":"{!adjustDiv}",
+                  "numDivLines":"{!numDivLines}",
+                  "yaxisvaluesstep":"{!yaxisvaluesstep}",
+                  "divIntervalHints":"{!divIntervalHints}",
+                  "divLineColor":"{!divLineColor}",
+                  "divLineThickness":"{!divLineThickness}",
+                  "divLineAlpha":"{!divLineAlpha}",
+                  "divLineIsDashed":"{!divLineIsDashed}",
+                  "divLineDashLen":"{!divLineDashLen}",
+                  "divLineDashGap":"{!divLineDashGap}",
+                  "showAlternateHGridColor":"{!showAlternateHGridColor}",  
+                  "adjustVDiv":"{!adjustVDiv}",
+                  "showXAxisValues":"{!showXAxisValues}",
+                  "numVDivlines":"{!numVDivlines}",
+                  "xAxisValuesStep":"{!xAxisValuesStep}",
+                  "vDivlineColor":"{!vDivlineColor}",
+                  "vDivlineThickness":"{!vDivlineThickness}",
+                  "vDivlineAlpha":"{!vDivlineAlpha}",
+                  "vDivlineIsDashed":"{!vDivlineIsDashed}",
+                  "vDivlineDashLen":"{!vDivlineDashLen}",
+                  "vDivlineDashGap":"{!vDivlineDashGap}",
+                  "showAlternateVGridColor":"{!showAlternateVGridColor}",
+                  "alternateVGridColor":"{!alternateVGridColor}",
+                  "alternateVGridAlpha":"{!alternateVGridAlpha}",  
+                  "zeroPlaneColor":"{!zeroPlaneColor}",
+                  "zeroPlaneThickness":"{!zeroPlaneThickness}",
+                  "zeroPlaneAlpha":"{!zeroPlaneAlpha}",
+                  "zeroPlaneShowBorder":"{!zeroPlaneShowBorder}",
+                  "zeroPlaneBorderColor":"{!zeroPlaneBorderColor}",
+                  "showVZeroPlane":"{!showVZeroPlane}",
+                  "vZeroPlaneColor":"{!vZeroPlaneColor}",
+                  "vZeroPlaneThickness":"{!vZeroPlaneThickness}",
+                  "vZeroPlaneAlpha":"{!vZeroPlaneAlpha}",
+                  "vDivlineDashGap":"{!vDivlineDashGap}",
+                  "showAlternateVGridColor":"{!showAlternateVGridColor}",
+                  "alternateVGridColor":"{!alternateVGridColor}",
+                  "alternateVGridAlpha":"{!alternateVGridAlpha}",  
+                  "drawAnchors":"{!drawAnchors}",
+                  "anchorAlpha":"{!anchorAlpha}",
+                  "anchorSides":"{!anchorSides}",
+                  "anchorRadius":"{!anchorRadius}",
+                  "anchorBorderColor":"{!anchorBorderColor}",
+                  "anchorBorderThickness":"{!anchorBorderThickness}",
+                  "anchorBgColor":"{!anchorBgColor}",
+                  "anchorAlpha":"{!anchorAlpha}",
+                  "anchorBgAlpha":"{!anchorBgAlpha}",  
+                  "showToolTip":"{!showToolTip}",
+                  "showToolTipShadow":"{!showToolTipShadow}",
+                  "toolTipBorderColor":"{!toolTipBorderColor}",
+                  "toolTipBgColor":"{!toolTipBgColor}",  
+                  "chartLeftMargin":"{!chartLeftMargin}",
+                  "chartRightMargin":"{!chartRightMargin}",
+                  "chartTopMargin":"{!chartTopMargin}",
+                  "chartBottomMargin":"{!chartBottomMargin}",
+                  "captionPadding":"{!captionPadding}",
+                  "xAxisNamePadding":"{!xAxisNamePadding}",
+                  "yAxisNamePadding":"{!yAxisNamePadding}",
+                  "yAxisValuesPadding":"{!yAxisValuesPadding}",
+                  "labelPadding":"{!labelPadding}",
+                  "valuePadding":"{!valuePadding}",
+                  "canvasPadding":"{!canvasPadding}",
+                  "enableSmartLabels":"{!enableSmartLabels}",
+                  "smartLineColor":"{!smartLineColor}",
+                  "smartLineThickness":"{!smartLineThickness}",
+                  "smartLineAlpha":"{!smartLineAlpha}",
+                  "isSmartLineSlanted":"{!isSmartLineSlanted}",
+                  "labelDistance":"{!labelDistance}",
+                  "smartLabelClearance":"{!smartLabelClearance}",
+                  "skipOverlapLabels":"{!skipOverlapLabels}",
+                  "showPercentValues":"{!showPercentValues}",  
+                  "showlegend":"{!showlegend}",
+                  "legendPosition":"{!legendPosition}",
+                  "legendIconScale":"{!legendIconScale}",
+                  "legendNumColumns":"{!legendNumColumns}",
+                  "reverseLegend":"{!reverseLegend}",
+                  "legendBgColor":"{!legendBgColor}",
+                  "legendBgAlpha":"{!legendBgAlpha}",
+                  "legendBorderColor":"{!legendBorderColor}",
+                  "legendBorderThickness":"{!legendBorderThickness}",
+                  "legendBorderAlpha":"{!legendBorderAlpha}",
+                  "legendShadow":"{!legendShadow}",
+                  "legendScrollBgColor":"{!legendScrollBgColor}",
+                  "legendScrollBarColor":"{!legendScrollBarColor}",
+                  "legendScrollBtnColor":"{!legendScrollBtnColor}",  
+                  "decimals":"{!decimals}",
+                  "forceDecimals":"{!forceDecimals}",
+                  "sDecimals":"{!sDecimals}",
+                  "formatNumberScale":"{!formatNumberScale}",
+                  "formatNumber":"{!formatNumber}",
+                  "sFormatNumber":"{!sFormatNumber}",
+                  "sFormatNumberScale":"{!sFormatNumberScale}",
+                  "decimalSeparator":"{!decimalSeparator}",
+                  "thousandSeparator":"{!thousandSeparator}",
+                  "thousandSeparatorPosition":"{!thousandSeparatorPosition}",
+                  "numberPrefix":"{!numberPrefix}",
+                  "numberSuffix":"{!numberSuffix}",
+                  "sNumberPrefix":"{!sNumberPrefix}",
+                  "sNumberSuffix":"{!sNumberSuffix}",
+                  "yAxisValueDecimals":"{!yAxisValueDecimals}",
+                  "forceYAxisValueDecimals":"{!forceYAxisValueDecimals}",
+                  "SYAxisValueDecimals":"{!SYAxisValueDecimals}",  
+                  "formatNumberScale":"{!formatNumberScale}",
+                  "numberScaleValue":"{!numberScaleValue}",
+                  "numberScaleUnit":"{!numberScaleUnit}",
+                  "xScaleRecursively":"{!xScaleRecursively}",
+                  "xMaxScaleRecursion":"{!xMaxScaleRecursion}",
+                  "xScaleSeparator":"{!xScaleSeparator}",
+                  "sScaleRecursively":"{!sScaleRecursively}",
+                  "sMaxScaleRecursion":"{!sMaxScaleRecursion}",
+                  "sScaleSeparator":"{!sScaleSeparator}",
+                  "showaboutmenuitem":"{!showaboutmenuitem}",
+                  "aboutmenuitemlabel":"{!aboutmenuitemlabel}",
+                  "aboutmenuitemlink":"{!aboutmenuitemlink}",  
+                  "radius3D":"{!radius3D}",
+                  "startingAngle":"{!startingAngle}",
+                  "slicingDistance":"{!slicingDistance}",
+                  "pieRadius":"{!pieRadius}",
+                  "enableRotation":"{!enableRotation}",
+                  "showPercentInToolTip":"{!showPercentInToolTip}",    
+                  "cameraAngX":"{!cameraAngX}",
+                  "cameraAngY":"{!cameraAngY}",
+                  "startAngX":"{!startAngX}",
+                  "endAngX":"{!endAngX}",
+                  "startAngY":"{!startAngY}",
+                  "endAngY":"{!endAngY}",
+                  "dynamicShading":"{!dynamicShading}",
+                  "lightAngX":"{!lightAngX}",
+                  "lightAngY":"{!lightAngY}",
+                  "bright2D":"{!bright2D}",
+                  "intensity":"{!intensity}",
+                  "YZWallDepth":"{!YZWallDepth}",
+                  "ZXWallDepth":"{!ZXWallDepth}",
+                  "XYWallDepth":"{!XYWallDepth}",
+                  "zGapPlot":"{!zGapPlot}",
+                  "zDepth":"{!zDepth}",
+                  "clustered":"{!clustered}",
+                  "zeroPlaneColor":"{!zeroPlaneColor}",
+                  "zeroPlaneAlpha":"{!zeroPlaneAlpha}",
+                  "zeroPlaneMesh":"{!zeroPlaneMesh}",
+                  "is2D":"{!is2D}",
+                  "chartOnTop":"{!chartOnTop}",
+                  "xLabelGap":"{!xLabelGap}",
+                  "yLabelGap":"{!yLabelGap}",  
+                  "showCumulativeLine":"{!showCumulativeLine}",
+                  "showLineValues":"{!showLineValues}",
+                  "showSecondaryLimits":"{!showSecondaryLimits}",
+                  "showDivLineSecondaryValue":"{!showDivLineSecondaryValue}",
+                  "showSum":"{!showSum}",
+                  "usePercentDistribution":"{!usePercentDistribution}",
+                  "showXAxisPercentValues":"{!showXAxisPercentValues}"
+                };
+
+    var debugMode = {!debugMode};
+    Visualforce.remoting.Manager.invokeAction("{!dataController}", function(result, event){
+            result = JSON.parse(result);
+            if (!result["chart"])
+              result["chart"] = {};
+
+            //Merge chart and result
+            for (x in chart){
+              if (!!chart[x])
+                result["chart"][x] = chart[x];
+            }
+
+            if (debugMode)  console.log(result);
+            var myChart = new FusionCharts( "{!chart}", "fc-"+"{!chartId}", {!width}, {!height}, debugMode);
+            myChart.setJSONData(result);
+            myChart.render("{!chartId}");
+            
+        }, {escape: false});
+  </script>
+
+</apex:component>
