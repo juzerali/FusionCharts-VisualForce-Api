@@ -49,7 +49,7 @@ If you are coming from FusionCharts XML background, it will probably pretty stra
 
 Apart from that the required attribute for the component are
 
-* `chartId`: A unique id for the chart. This will be the id of html div tag holding the chart. The actual id of the FusionChart object would be the `chartId provided by you preceded by `fc-`. So if you have provided `chartId="mychart"`, the FusionChart object id would be `fc-mychart`
+* `chartId`: A unique id for the chart. This will be the id of html div tag holding the chart. The actual id of the FusionChart object would be the `chartId` provided by you preceded by `fc-`. So if you have provided `chartId="mychart"`, the FusionChart object id would be `fc-mychart`
 * `chart`: As usual with FusionChart javascript api, provide relative path of the actual chart file that you want to draw. If you have uploaded your FusionChart files as static resources as mentioned in the quickstart guide you should be able to refernce them by `chart="{!URLFOR($Resource.FusionCharts, 'Charts/<chart-name>[.swf]')}"`
 * `width`
 * `height`
