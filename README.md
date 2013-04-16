@@ -53,7 +53,7 @@ If you are coming from FusionCharts XML background, it will probably be pretty s
 * `chart`: As usual with FusionChart javascript api, provide relative path of the actual chart file that you want to draw. If you have uploaded your FusionChart files as static resources as mentioned in the quickstart guide you should be able to refernce them by `chart="{!URLFOR($Resource.FusionCharts, 'Charts/<chart-name>[.swf]')}"`
 * `width`
 * `height`
-* `dataController`: The data controller name followed by a `.` and the @RemoteAction method name which will provide the actual data. Currently only JSON data is supported. As with FusionCharts JSON api, data should come wrapped inside property named `data`.
+* `dataController`: The data controller name followed by a `.` and the @RemoteAction method name which will provide the actual data. Currently only JSON data is supported. As with FusionCharts JSON api, data should come wrapped inside property named `data`. Like so `{data: [... The actual array of data ...]}`
 
 An optional attribute is `debugMode`. Setting it to 1 will draw the chart in debug mode and will print debug information.
 
