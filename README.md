@@ -40,7 +40,7 @@ Now you can draw your first fusion chart on an apex page.
 For quickstart copy the contents of [example apex page](Example/apexpage.xml) and save it under the name `fusionchart`
 3. Now hit the page https://your-salesforce-domain/apex/fusionchart. You will see a pie chart and a Column3D chart appear.
 
-Thats about it for this quick start tutorial.
+Thats about it for this quick start tutorial. See it in action [here](https://saas-platform-8087--c.ap1.visual.force.com/apex/FusionCharts)
 
 The How To
 ==========
