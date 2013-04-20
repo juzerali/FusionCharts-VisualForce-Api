@@ -64,7 +64,7 @@ TODO
 * ~~Support for XML data~~
 * If multiple chart components are used on same page, the FusionCharts script is loaded multiple times. Make it so that the script is loaded only once.
 * Complete coverage of FusionCharts API.
-* ~~Major refactoring of the code.~~ No major changes expected, each chart is now properly wrapped inside a closure, separating every charts contents to avoid conflicts.~~
+* ~~Major refactoring of the code.~~ No major changes expected, each chart is now properly wrapped inside a closure, separating every charts contents to avoid conflicts.
 * Trenlines and Style.
 
 Bugs, Questions, and Suggestions
