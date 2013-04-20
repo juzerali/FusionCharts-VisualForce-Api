@@ -61,11 +61,11 @@ Other attributes are exactly the same as in FusionCharts XML data API. You can r
 
 TODO
 ====
-- [x] Support for XML data
-- [ ] If multiple chart components are used on same page, the FusionCharts script is loaded multiple times. Make it so that the script is loaded only once.
-- [ ] Complete coverage of FusionCharts API.
-- [ ] Major refactoring of the code.
-- [ ] Trenlines and Style.
+~~Support for XML data~~
+If multiple chart components are used on same page, the FusionCharts script is loaded multiple times. Make it so that the script is loaded only once.
+Complete coverage of FusionCharts API.
+Major refactoring of the code.
+Trenlines and Style.
 
 Bugs, Questions, and Suggestions
 ================================
