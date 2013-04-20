@@ -1,5 +1,5 @@
 <apex:page >
-This is first fusion charts.
+Fusion Charts apex example page
     
     <c:fusioncharts chartId="firstChart" chart="{!URLFOR($Resource.FusionCharts, 'Charts/Column3D.swf')}"
         width="400" height="300" debugMode="0"
@@ -10,5 +10,9 @@ This is first fusion charts.
         width="400" height="300" debugMode="0"
         dataController="MyController.getJSONPieData" caption="Weekly Sales Summary!" xAxisName="Week" yAxisName="Sales" 
         numberPrefix="$"/>
+
+    <c:fusioncharts chartId="xmlStackedColumn2DChart" chart="{!URLFOR($Resource.FusionCharts, 'Charts/StackedColumn2DLine.swf')}"
+        width="400" height="300" debugMode="0"
+        dataController="MyController.getXMLStackedColumn2DChartData" showValues="0" caption="Cost-Revenue Analysis" numberPrefix="$" xAxisName="Quarters" yAxisName="Cost" useRoundEdges="1"/>
 
 </apex:page>
