@@ -55,7 +55,9 @@ If you are coming from FusionCharts XML background, it will probably be pretty s
 * `height`
 * `dataController`: The data controller name followed by a `.` and the @RemoteAction method name which will provide the actual data. Currently only JSON data is supported. As with FusionCharts JSON api, data should come wrapped inside property named `data`. Like so `{data: [... The actual array of data ...]}`
 
-An optional attribute is `debugMode`. Setting it to 1 will draw the chart in debug mode and will print debug information.
+## Optional Attributes
+* `debugMode`: Setting it to 1 will draw the chart in debug mode and will print debug information.
+* `isJSON`: Boolean, setting it to `true` will treat the data returned by controller as JSON. Otherwise component will first try to parse the data as XML, failing which it will fallback to parsing it to JSON. If that too fails and `Error` will be thrown on Javascript console.
 
 Other attributes are exactly the same as in FusionCharts XML data API. You can refer to them on official documentation site.
 

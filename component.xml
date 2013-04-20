@@ -480,6 +480,7 @@
                     };
     
         var isJSON = {!isJSON};
+        var error = new Error;
         var xmlParser = new DOMParser();
         var xmlSerializer = new XMLSerializer();
         Visualforce.remoting.Manager.invokeAction("{!dataController}", function(result, event){
@@ -499,13 +500,23 @@
     
                     myChart.setXMLData(xmlSerializer.serializeToString(xmlData));
                   } catch(e){
-              if(debugMode) throw e;
+                    error.message += "FusionCharts VisualForce API: Tried to parse data as XML which failed. ";
+                    if(debugMode) console.log(e);
                     isJSON = true;
+                    // TODO: Handle isJSON = false scenario better
+                    /* if (!isJSON === false) isJSON = true;
+                    else throw error; */
                   }
                 }
     
                 if(isJSON){
-                  var jsonChart = JSON.parse(result);
+                  var jsonChart;
+                  try {
+                    jsonChart = JSON.parse(result);
+                  } catch (e){
+                    error.message += "FusionCharts VisualForce API: Tried to parse data to JSON which failed."
+                    throw error;
+                  }
                   if (!jsonChart["chart"])
                     jsonChart["chart"] = {};
     
